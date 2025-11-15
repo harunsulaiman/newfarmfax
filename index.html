@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmfax - Agricultural Financing Made Easy</title>
+    <meta name="description" content="Easy, fast, and sustainable agricultural financing built for local farmers in Nigeria.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <style>
+        :root {
+            --primary: #228B22;
+            --dark-green: #006400;
+            --light-green: #f0f8f0;
+            --text: #222;
+            --gray: #555;
+            --light-gray: #f8f9fa;
+            --border: #e2e2e2;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text); background: #fff; overflow-x: hidden; }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        button, input, textarea { outline: none; }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 20px 0;
+            transition: all 0.3s;
+        }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 32px; font-weight: 900; color: var(--primary); letter-spacing: -1px; }
+        nav ul { display: flex; gap: 48px; list-style: none; }
+        nav ul li a { color: #000; font-weight: 600; font-size: 16px; transition: color 0.3s; }
+        nav ul li a:hover { color: var(--primary); }
+        .login-btn {
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 34px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+        .login-btn:hover { background: var(--dark-green); transform: translateY(-2px); }
+        .menu-toggle { display: none; font-size: 28px; color: var(--primary); cursor: pointer; }
+
+        /* Hero */
+        .hero {
+            padding: 160px 0 120px;
+            background: linear-gradient(135deg, #f8fff8 0%, #f0f8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .hero-text h1 { font-size: 56px; line-height: 1.1; margin-bottom: 24px; font-weight: 900; }
+        .hero-text h1 span { color: var(--primary); }
+        .hero-text p:first-of-type { font-size: 22px; color: var(--primary); font-weight: 600; margin-bottom: 16px; }
+        .hero-text p { font-size: 18px; margin-bottom: 40px; max-width: 520px; color: var(--gray); }
+        .apply-now-btn {
+            background: var(--primary);
+            color: #fff;
+            padding: 20px 52px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            box-shadow: 0 12px 30px rgba(34,139,34,0.25);
+        }
+        .apply-now-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(34,139,34,0.35);
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        /* Steps */
+        .steps { padding: 120px 0; background: #fff; }
+        .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .step-card {
+            background: #fff;
+            padding: 48px 32px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+        }
+        .step-card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
+        .step-dot { width: 28px; height: 28px; border-radius: 50%; margin: 0 auto 32px; }
+        .step-1 .step-dot { background: #e74c3c; }
+        .step-2 .step-dot { background: #f39c12; }
+        .step-3 .step-dot { background: #27ae60; }
+        .step-card h3 { font-size: 24px; margin-bottom: 20px; color: var(--primary); font-weight: 700; }
+
+        /* Empowering */
+        .empowering { padding: 120px 0; text-align: center; background: var(--light-gray); }
+        .empowering img { border-radius: 20px; margin-bottom: 60px; box-shadow: 0 25px 70px rgba(0,0,0,0.18); }
+        .mission-text { font-size: 32px; font-weight: 800; max-width: 900px; margin: 0 auto 32px; color: var(--dark-green); line-height: 1.3; }
+
+        /* How it works */
+        .how-it-works { padding: 120px 0; background: #fff; }
+        .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
+        .how-card {
+            background: #fff;
+            padding: 60px 32px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+        }
+        .how-card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
+        .how-card i { font-size: 78px; color: var(--primary); margin-bottom: 32px; }
+
+        /* Testimonials */
+        .testimonials { padding: 120px 0; background: var(--light-gray); }
+        .testimonial-card {
+            background: #fff;
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .testimonial-card img { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 28px; border: 5px solid var(--primary); object-fit: cover; }
+        .testimonial-card p { font-size: 18px; font-style: italic; margin-bottom: 24px; color: var(--gray); line-height: 1.6; }
+        .testimonial-card h4 { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+
+        /* FAQ */
+        .faq { padding: 120px 0; background: #fff; }
+        .accordion-item { margin-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+        .accordion-header {
+            background: linear-gradient(135deg, var(--primary), var(--dark-green));
+            color: #fff;
+            padding: 28px 32px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 20px;
+            transition: background 0.3s;
+        }
+        .accordion-header:hover { background: var(--dark-green); }
+        .accordion-header i { transition: transform 0.4s; font-size: 20px; }
+        .accordion-item.active .accordion-header i { transform: rotate(180deg); }
+        .accordion-body { padding: 0 32px; max-height: 0; overflow: hidden; transition: all 0.5s ease; background: #fff; }
+        .accordion-item.active .accordion-body { padding: 32px; max-height: 400px; font-size: 16px; color: var(--gray); line-height: 1.7; }
+
+        /* Footer - Fully Professional & Balanced */
+        footer {
+            background: var(--dark-green);
+            color: #fff;
+            padding: 100px 0 50px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            margin-bottom: 80px;
+        }
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(4, max-content);
+            gap: 80px;
+            justify-content: start;
+        }
+        .footer-column h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .footer-column ul {
+            list-style: none;
+        }
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        .footer-column ul li a {
+            color: #ddd;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        .footer-column ul li a:hover {
+            color: #fff;
+        }
+        .footer-column p {
+            color: #ddd;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .subscribe form {
+            display: flex;
+            max-width: 380px;
+            margin-top: 20px;
+        }
+        .subscribe input {
+            padding: 18px 24px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            flex: 1;
+            font-size: 15px;
+        }
+        .subscribe button {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 18px 36px;
+            border-radius: 0 50px 50px 0;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .subscribe button:hover {
+            background: #fff;
+            color: var(--dark-green);
+        }
+        .footer-right {
+            text-align: right;
+        }
+        .footer-right .logo {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 32px;
+            color: #fff;
+        }
+        .footer-right p {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #eee;
+        }
+        .social-icons {
+            margin-top: 32px;
+        }
+        .social-icons a {
+            color: #fff;
+            font-size: 26px;
+            margin-left: 24px;
+            transition: all 0.3s;
+        }
+        .social-icons a:first-child { margin-left: 0; }
+        .social-icons a:hover {
+            color: var(--primary);
+            transform: translateY(-4px);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .footer-columns { gap: 50px; }
+        }
+        @media (max-width: 992px) {
+            .hero-grid, .steps-grid, .how-grid { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 48px; }
+            .hero-text { text-align: center; }
+            .hero-text p { margin-left: auto; margin-right: auto; }
+            .footer-grid { grid-template-columns: 1fr; gap: 80px; }
+            .footer-columns { grid-template-columns: 1fr 1fr; gap: 60px; }
+            .footer-right { text-align: left; }
+        }
+        @media (max-width: 768px) {
+            .hero { padding: 140px 0 100px; }
+            .hero-text h1 { font-size: 42px; }
+            .section-title { font-size: 36px; }
+            .section-title::after { width: 80px; height: 5px; }
+            nav ul { display: none; }
+            .menu-toggle { display: block; }
+            nav ul.show {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 30px 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                text-align: center;
+            }
+            .footer-columns { grid-template-columns: 1fr; gap: 50px; }
+            .subscribe form { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo">FARMFAX</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+            <button class="login-btn">Log In</button>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text" data-aos="fade-right">
+                <h1>Agricultural Financing <span>made Easy</span></h1>
+                <p>Easy, fast, and sustainable agricultural financing — built for local farmers</p>
+                <p>Connecting farmers with the right resources, loans, and insights to grow smarter, faster, and more sustainably.</p>
+                <button class="apply-now-btn">Apply Now</button>
+            </div>
+            <div class="hero-image" data-aos="fade-left">
+                <img src="imag/dl.beatsnoop.com-3000-2R3ElOjJyW.jpg" alt="Nigerian rice farmer">
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 Easy Steps -->
+    <section class="steps">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Your Financing in 3 Easy steps</h2>
+            <div class="steps-grid">
+                <div class="step-card step-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-dot"></div>
+                    <h3>APPLY IN MINUTES</h3>
+                    <p>Fill out a simple digital form with your farm details and loan requirements. No long paperwork.</p>
+                </div>
+                <div class="step-card step-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-dot"></div>
+                    <h3>Get Approved Fast</h3>
+                    <p>Our system evaluates your application using smart verification tools. Receive approval in real-time or timely.</p>
+                </div>
+                <div class="step-card step-3" data-aos="fade-up" data-aos-delay="500">
+                    <div class="step-dot"></div>
+                    <h3>Receive Input & Start</h3>
+                    <p>We support you with feeds, inputs, or other farm essentials and grow your yield.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empowering Local Farmers -->
+    <section class="empowering">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Empowering Local Farmers</h2>
+            <img src="imag/dl.beatsnoop.com-3000-utJjSTDAh5.jpg" alt="Catfish farming" data-aos="zoom-in">
+            <p class="mission-text" data-aos="fade-up" data-aos-delay="200">Our mission is to unlock the potential of local agriculture.</p>
+            <p data-aos="fade-up" data-aos-delay="300">We achieve this by providing growers with essential working capital in the form of high-quality input and feed loans, directly enabling higher yields, securing local supply chains, and fueling sustainable economic growth in their communities.</p>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">How it works</h2>
+            <div class="how-grid">
+                <div class="how-card" data-aos="flip-left" data-aos-delay="100">
+                    <i class="fas fa-user-plus"></i>
+                    <h3>Sign up and Apply</h3>
+                    <p>Create your account and share basic details about your farm. We make it simple — no stress, no long forms.</p>
+                </div>
+                <div class="how-card" data-aos="flip-left" data-aos-delay="300">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Get Verified</h3>
+                    <p>Our system reviews your profile and verifies your eligibility for input support or financing.</p>
+                </div>
+                <div class="how-card" data-aos="flip-left" data-aos-delay="500">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Access Input</h3>
+                    <p>Once approved, you'll receive the right farm inputs — feeds, seeds, or other essentials — through our network.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">What Farmers Say</h2>
+            <div class="swiper testimonials-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <img src="imag/dl.beatsnoop.com-3000-2R3ElOjJyW.jpg" alt="Abdullahi Umaru">
+                            <p>"Farmfax really helped my farm. I am now fully sustaining my fish farming business with the help of Farmfax"</p>
+                            <h4>Abdullahi Umaru</h4>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <img src="imag/dl.beatsnoop.com-3000-2R3ElOjJyW.jpg" alt="Musa Ibrahim">
+                            <p>"The process was seamless and fast. I got my inputs within days and my yield increased by over 40% this season!"</p>
+                            <h4>Musa Ibrahim</h4>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <img src="imag/small icon.zip" alt="Aminu Bello">
+                            <p>"Best decision I made this year. No collateral needed and repayment is tied to my harvest. Highly recommend!"</p>
+                            <h4>Aminu Bello</h4>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">FAQ</h2>
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>What Financing models do you offer?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>We offer input financing, feed loans, equipment financing, and flexible working capital — all tailored to agricultural seasons with repayment aligned to your harvest.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Can I apply?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Yes! Any registered farmer or agribusiness operating in Nigeria can apply through our fully digital platform.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>How flexible is the loan?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Extremely flexible — no hidden fees, grace periods available, and repayment schedules are built around your harvest cycle.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>How Fast is your approval rate?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Many farmers receive instant pre-approval. Full verification and funding typically happen within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Address</h4>
+                    <p>DH-1069 Maiduguri,<br>Borno State, Nigeria</p>
+                </div>
+                <div class="footer-column subscribe">
+                    <h4>Sign up/Login</h4>
+                    <form>
+                        <input type="email" placeholder="johndoe@gmail.com" required>
+                        <button type="submit">SUBSCRIBE</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="logo">FARMFAX</div>
+                <p>DH-1069 Maiduguri, Borno State, Nigeria</p>
+                <p>Phone: +234 802 218 8861</p>
+                <p>Email: info@farmfax.com.ng</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>© 2025 Farmfax. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
+
+        // Mobile menu
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        // Testimonial Swiper
+        new Swiper('.testimonials-swiper', {
+            loop: true,
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            breakpoints: {
+                768: { slidesPerView: 2, spaceBetween: 30 },
+                1024: { slidesPerView: 2, spaceBetween: 40 }
+            }
+        });
+
+        // FAQ Accordion (one open at a time)
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    if (i !== item) i.classList.remove('active');
+                });
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
